@@ -21,54 +21,54 @@ export default class WeatherData {
   }
 
   static getCurrentConditions(weatherData) {
-    const currConditions = weatherData.currentConditions;
-
-    const temp = currConditions.temp;
-    const feelsLike = currConditions.feelslike;
-    const conditions = currConditions.conditions;
-    const icon = currConditions.icon;
-    const precip = currConditions.precip;
-    const precipProb = currConditions.precipprob;
-    const windDir = currConditions.winddir;
-    const windSpeed = currConditions.windspeed;
-    const windGust = currConditions.windgust;
-    const humidity = currConditions.humidity;
-
-    return {
+    const {
       temp,
-      feelsLike,
+      feelslike,
       conditions,
       icon,
       precip,
-      precipProb,
-      windDir,
-      windSpeed,
-      windGust,
+      precipprob,
+      winddir,
+      windspeed,
+      windgust,
+      humidity,
+    } = weatherData.currentConditions;
+
+    return {
+      temp,
+      feelslike,
+      conditions,
+      icon,
+      precip,
+      precipprob,
+      winddir,
+      windspeed,
+      windgust,
       humidity,
     };
   }
 
   static getTodayForecast(weatherData) {
-    const todayData = weatherData.days[0];
-
-    const desc = todayData.description;
-    const tempMax = todayData.tempmax;
-    const tempMin = todayData.tempmin;
-    const precip = todayData.precip;
-    const precipProb = todayData.precipprob;
-    const sunrise = todayData.sunrise;
-    const sunset = todayData.sunset;
-    const uvIndex = todayData.uvindex;
-
-    return {
-      desc,
-      tempMax,
-      tempMin,
+    const {
+      description,
+      tempmax,
+      tempmin,
       precip,
-      precipProb,
+      precipprob,
       sunrise,
       sunset,
-      uvIndex,
+      uvindex,
+    } = weatherData.days[0];
+
+    return {
+      description,
+      tempmax,
+      tempmin,
+      precip,
+      precipprob,
+      sunrise,
+      sunset,
+      uvindex,
     };
   }
 
@@ -79,13 +79,9 @@ export default class WeatherData {
 
     hourlyData.forEach((hour) => {
       if (currTimeEpoch < hour.datetimeEpoch) {
-        const dateTime = hour.datetime;
-        const icon = hour.icon;
-        const temp = hour.temp;
-        const feelsLike = hour.feelslike;
-        const precip = hour.precip;
+        const { datetime, icon, temp, feelslike, precip } = hour;
 
-        hourlyForecast.push({ dateTime, icon, temp, feelsLike, precip });
+        hourlyForecast.push({ datetime, icon, temp, feelslike, precip });
       }
     });
 
@@ -97,22 +93,24 @@ export default class WeatherData {
     const futureData = weatherData.days.slice(1, 8);
 
     futureData.forEach((day) => {
-      const dateTime = day.datetime;
-      const conditions = day.conditions;
-      const icon = day.icon;
-      const tempMin = day.tempmin;
-      const tempMax = day.tempmax;
-      const precip = day.precip;
-      const precipProb = day.precipprob;
-
-      nextWeekForecast.push({
-        dateTime,
+      const {
+        datetime,
         conditions,
         icon,
-        tempMin,
-        tempMax,
+        tempmin,
+        tempmax,
         precip,
-        precipProb,
+        precipprob,
+      } = day;
+
+      nextWeekForecast.push({
+        datetime,
+        conditions,
+        icon,
+        tempmin,
+        tempmax,
+        precip,
+        precipprob,
       });
     });
 
