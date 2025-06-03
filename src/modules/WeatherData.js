@@ -16,6 +16,10 @@ export default class WeatherData {
     return dataJson;
   }
 
+  static getAddress(weatherData) {
+    return weatherData.resolvedAddress;
+  }
+
   static getCurrentConditions(weatherData) {
     const currConditions = weatherData.currentConditions;
 
