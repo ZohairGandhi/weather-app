@@ -3,9 +3,218 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <title>The MeteOracle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
   </head>
   <body>
-    <h1>Test</h1>
+    <header>
+      <h1>The MeteOracle</h1>
+
+      <form id="search-bar">
+        <input type="text" name="" value="" />
+
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="white"
+          >
+            <path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
+          </svg>
+        </button>
+      </form>
+    </header>
+
+    <main>
+      <section id="address-card" class="card">
+        <h1>Sydney, NSW 2000, Australia</h1>
+      </section>
+
+      <section id="curr-cond-card" class="card">
+        <h2>Current Conditions</h2>
+
+        <h3>Partially Cloudy</h3>
+
+        <div id="curr-cond-sec">
+          <div id="curr-temp-sec">
+            <img src="./icons/partly-cloudy-day.svg" />
+
+            <div id="temp-pair">
+              <p>18.3 &deg;C</p>
+              <p>Feels like 18.3 &deg;C</p>
+            </div>
+          </div>
+
+          <ul id="cond-sec">
+            <li>0% chance of 0mm rain</li>
+            <li>E 4.6 km/h wind</li>
+            <li>11.2 km/h gust</li>
+            <li>55.9% humidity</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="today-card" class="card">
+        <h2>Today's Weather</h2>
+
+        <h3>Partly cloudy throughout the day with early morning rain.</h3>
+
+        <ul id="today-cond">
+          <li>Max Temp 18.9 &deg;C</li>
+          <li>Min Temp 11.9 &deg;C</li>
+          <li>100% chance of 1.7mm rain</li>
+          <li>Sunrise 06:48</li>
+          <li>Sunset 16:56</li>
+          <li>UV Index 5</li>
+        </ul>
+      </section>
+
+      <section id="hourly-card" class="card">
+        <h2>Hourly Forecast</h2>
+
+        <div id="hourly-carousel">
+          <ul class="hour-card">
+            <li><p>13:00</p></li>
+            <li><img src="./icons/partly-cloudy-day.svg" alt="" /></li>
+            <li><p>18.9 &deg;C</p></li>
+            <li>
+              <img src="./icons/water.svg" alt="" />
+              <p>0%</p>
+            </li>
+          </ul>
+
+          <ul class="hour-card">
+            <li><p>13:00</p></li>
+            <li><img src="./icons/partly-cloudy-day.svg" alt="" /></li>
+            <li><p>18.9 &deg;C</p></li>
+            <li>
+              <img src="./icons/water.svg" alt="" />
+              <p>0%</p>
+            </li>
+          </ul>
+
+          <ul class="hour-card">
+            <li><p>13:00</p></li>
+            <li><img src="./icons/partly-cloudy-day.svg" alt="" /></li>
+            <li><p>18.9 &deg;C</p></li>
+            <li>
+              <img src="./icons/water.svg" alt="" />
+              <p>0%</p>
+            </li>
+          </ul>
+
+          <ul class="hour-card">
+            <li><p>13:00</p></li>
+            <li><img src="./icons/partly-cloudy-day.svg" alt="" /></li>
+            <li><p>18.9 &deg;C</p></li>
+            <li>
+              <img src="./icons/water.svg" alt="" />
+              <p>0%</p>
+            </li>
+          </ul>
+
+          <ul class="hour-card">
+            <li><p>13:00</p></li>
+            <li><img src="./icons/partly-cloudy-day.svg" alt="" /></li>
+            <li><p>18.9 &deg;C</p></li>
+            <li>
+              <img src="./icons/water.svg" alt="" />
+              <p>0%</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="weekly-card" class="card">
+        <h2>Next Week Forecast</h2>
+
+        <table id="weekly-data">
+          <tr>
+            <th>Date</th>
+            <th>Conditions</th>
+            <th>Min Temp. (&deg;C)</th>
+            <th>Max Temp. (&deg;C)</th>
+            <th>Chance of rain</th>
+          </tr>
+
+          <tr>
+            <td>May 28</td>
+            <td>
+              <img src="./icons/partly-cloudy-day.svg" alt="" /> Partially
+              Cloudy
+            </td>
+            <td>10.7</td>
+            <td>17.6</td>
+            <td>0%</td>
+          </tr>
+
+          <tr>
+            <td>May 28</td>
+            <td>
+              <img src="./icons/partly-cloudy-day.svg" alt="" /> Partially
+              Cloudy
+            </td>
+            <td>10.7</td>
+            <td>17.6</td>
+            <td>0%</td>
+          </tr>
+
+          <tr>
+            <td>May 28</td>
+            <td>
+              <img src="./icons/partly-cloudy-day.svg" alt="" /> Partially
+              Cloudy
+            </td>
+            <td>10.7</td>
+            <td>17.6</td>
+            <td>0%</td>
+          </tr>
+
+          <tr>
+            <td>May 28</td>
+            <td>
+              <img src="./icons/partly-cloudy-day.svg" alt="" /> Partially
+              Cloudy
+            </td>
+            <td>10.7</td>
+            <td>17.6</td>
+            <td>0%</td>
+          </tr>
+
+          <tr>
+            <td>May 28</td>
+            <td>
+              <img src="./icons/partly-cloudy-day.svg" alt="" /> Partially
+              Cloudy
+            </td>
+            <td>10.7</td>
+            <td>17.6</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>Copyright (c) 2025 Zohair Gandhi. All Rights Reserved.</p>
+
+      <a href="https://github.com/ZohairGandhi">
+        <i class="devicon-github-original"></i>
+      </a>
+    </footer>
   </body>
 </html>
