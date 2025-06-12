@@ -79,9 +79,9 @@ export default class WeatherData {
 
     hourlyData.forEach((hour) => {
       if (currTimeEpoch < hour.datetimeEpoch) {
-        const { datetime, icon, temp, feelslike, precip } = hour;
+        const { datetime, icon, temp, precipprob } = hour;
 
-        hourlyForecast.push({ datetime, icon, temp, feelslike, precip });
+        hourlyForecast.push({ datetime, icon, temp, precipprob });
       }
     });
 
@@ -93,15 +93,7 @@ export default class WeatherData {
     const futureData = weatherData.days.slice(1, 8);
 
     futureData.forEach((day) => {
-      const {
-        datetime,
-        conditions,
-        icon,
-        tempmin,
-        tempmax,
-        precip,
-        precipprob,
-      } = day;
+      const { datetime, conditions, icon, tempmin, tempmax, precipprob } = day;
 
       nextWeekForecast.push({
         datetime,
@@ -109,7 +101,6 @@ export default class WeatherData {
         icon,
         tempmin,
         tempmax,
-        precip,
         precipprob,
       });
     });
