@@ -226,3 +226,24 @@ footer a:hover {
   margin: auto;
   text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  main {
+    margin: 1rem;
+  }
+
+  #curr-cond-sec {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
