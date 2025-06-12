@@ -13,7 +13,7 @@ export default class UI {
       this.createAddressCard(address),
       this.createCurrCondCard(currConditions),
       this.createTodayCard(todayForecast),
-      // this.createHourlyCard(hourlyForecast),
+      this.createHourlyCard(hourlyForecast),
       // this.createWeeklyCard(weeklyForecast),
     );
   }
@@ -111,6 +111,33 @@ export default class UI {
     return section;
   }
 
+  static createHourlyCard(hourlyForecast) {
+    const section = this.createSection({ idName: 'hourly-card' });
+    const heading = this.createHeading('h2', 'Hourly Forecast');
+    const carouselDiv = this.createDiv('hourly-carousel');
+
+    hourlyForecast.forEach((hour) => {
+      const { datetime, icon, temp, precipprob } = hour;
+
+      const hourCard = this.createList({ className: 'hour-card' });
+      const timeItem = this.createListItem(DataFormatter.formatTime(datetime));
+      const iconItem = this.createListItem();
+      const iconImg = this.createImage(icon);
+      iconItem.appendChild(iconImg);
+      const tempItem = this.createListItem(`${temp} &deg;C`);
+      const precipItem = this.createListItem();
+      const precipImg = this.createImage('water');
+      const precipProbPara = this.createParagraph(`${precipprob}%`);
+      precipItem.append(precipImg, precipProbPara);
+
+      hourCard.append(timeItem, iconItem, tempItem, precipItem);
+      carouselDiv.appendChild(hourCard);
+    });
+
+    section.append(heading, carouselDiv);
+    return section;
+  }
+
   static createSection({ className = 'card', idName }) {
     const section = document.createElement('section');
     section.className = className;
@@ -153,7 +180,7 @@ export default class UI {
     return list;
   }
 
-  static createListItem(textContent) {
+  static createListItem(textContent = '') {
     const item = document.createElement('li');
     item.innerHTML = textContent;
     return item;
