@@ -10,6 +10,7 @@ export default class UI {
     weeklyForecast,
   }) {
     const main = document.querySelector('main');
+    main.innerHTML = '';
     main.append(
       this.createAddressCard(address),
       this.createCurrCondCard(currConditions),
@@ -17,6 +18,17 @@ export default class UI {
       this.createHourlyCard(hourlyForecast),
       this.createWeeklyCard(weeklyForecast),
     );
+  }
+
+  static renderErrorMsg() {
+    const main = document.querySelector('main');
+    main.innerHTML = '';
+    const errorMsg = this.createHeading(
+      'h2',
+      'Could not fetch the weather data. Check the spelling of the location.',
+    );
+    errorMsg.id = 'error-msg';
+    main.appendChild(errorMsg);
   }
 
   static createAddressCard(address) {

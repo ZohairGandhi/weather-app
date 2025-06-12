@@ -220,3 +220,8 @@ footer a {
 footer a:hover {
   transform: scale(1.5);
 }
+
+#error-msg {
+  margin: auto;
+  text-align: center;
+}
