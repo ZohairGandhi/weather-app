@@ -98,6 +98,7 @@ main {
 #curr-temp-sec {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
 }
 
 #curr-temp-sec img {
