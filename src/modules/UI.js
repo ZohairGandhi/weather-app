@@ -12,7 +12,7 @@ export default class UI {
     main.append(
       this.createAddressCard(address),
       this.createCurrCondCard(currConditions),
-      // this.createTodayCard(todayForecast),
+      this.createTodayCard(todayForecast),
       // this.createHourlyCard(hourlyForecast),
       // this.createWeeklyCard(weeklyForecast),
     );
@@ -69,6 +69,48 @@ export default class UI {
     return section;
   }
 
+  static createTodayCard(todayForecast) {
+    const {
+      description,
+      tempmax,
+      tempmin,
+      precip,
+      precipprob,
+      sunrise,
+      sunset,
+      uvindex,
+    } = todayForecast;
+
+    const section = this.createSection({ idName: 'today-card' });
+    const heading = this.createHeading('h2', "Today's Weather");
+    const subHeading = this.createHeading('h3', description);
+
+    const condList = this.createList({ idName: 'today-cond' });
+    const maxTempItem = this.createListItem(`Max Temp ${tempmax} &deg;C`);
+    const minTempItem = this.createListItem(`Min Temp ${tempmin} &deg;C`);
+    const precipItem = this.createListItem(
+      `${precipprob}% chance of ${precip}mm rain`,
+    );
+    const sunriseItem = this.createListItem(
+      `Sunrise ${DataFormatter.formatTime(sunrise)}`,
+    );
+    const sunsetItem = this.createListItem(
+      `Sunset ${DataFormatter.formatTime(sunset)}`,
+    );
+    const uvItem = this.createListItem(`UV Index ${uvindex}`);
+
+    condList.append(
+      maxTempItem,
+      minTempItem,
+      precipItem,
+      sunriseItem,
+      sunsetItem,
+      uvItem,
+    );
+    section.append(heading, subHeading, condList);
+    return section;
+  }
+
   static createSection({ className = 'card', idName }) {
     const section = document.createElement('section');
     section.className = className;
@@ -113,7 +155,7 @@ export default class UI {
 
   static createListItem(textContent) {
     const item = document.createElement('li');
-    item.textContent = textContent;
+    item.innerHTML = textContent;
     return item;
   }
 }
