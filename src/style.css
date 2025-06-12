@@ -81,6 +81,10 @@ main {
   color: white;
 }
 
+#address-card h2 {
+  margin-bottom: 0;
+}
+
 #curr-cond-card {
   background-color: var(--current-bg-color);
 }
