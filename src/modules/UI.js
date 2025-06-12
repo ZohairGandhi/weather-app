@@ -1,4 +1,5 @@
 import DataFormatter from './DataFormatter';
+import { format } from 'date-fns';
 
 export default class UI {
   static renderWeatherData({
@@ -14,7 +15,7 @@ export default class UI {
       this.createCurrCondCard(currConditions),
       this.createTodayCard(todayForecast),
       this.createHourlyCard(hourlyForecast),
-      // this.createWeeklyCard(weeklyForecast),
+      this.createWeeklyCard(weeklyForecast),
     );
   }
 
@@ -138,6 +139,53 @@ export default class UI {
     return section;
   }
 
+  static createWeeklyCard(weeklyForecast) {
+    const section = this.createSection({ idName: 'weekly-card' });
+    const heading = this.createHeading('h2', 'Next Week Forecast');
+    const weekTable = this.createTable('weekly-data');
+    const headRow = document.createElement('tr');
+
+    [
+      'Date',
+      'Conditions',
+      'Min Temp (&deg;C)',
+      'Max Temp (&deg;C)',
+      'Chance of rain',
+    ].forEach((item) => {
+      const data = this.createTableData({
+        cellType: 'th',
+        textContent: item,
+      });
+      headRow.appendChild(data);
+    });
+
+    weekTable.appendChild(headRow);
+
+    weeklyForecast.forEach((day) => {
+      const { datetime, conditions, icon, tempmin, tempmax, precipprob } = day;
+
+      const row = document.createElement('tr');
+      const date = this.createTableData({
+        textContent: `${format(new Date(datetime), 'MMM dd')}`,
+      });
+      const cond = this.createTableData({ textContent: '' });
+      const iconImg = this.createImage(icon);
+      const condPara = this.createParagraph(conditions);
+      cond.append(iconImg, condPara);
+      const minTemp = this.createTableData({ textContent: tempmin });
+      const maxTemp = this.createTableData({ textContent: tempmax });
+      const precipProb = this.createTableData({
+        textContent: `${precipprob}%`,
+      });
+
+      row.append(date, cond, minTemp, maxTemp, precipProb);
+      weekTable.appendChild(row);
+    });
+
+    section.append(heading, weekTable);
+    return section;
+  }
+
   static createSection({ className = 'card', idName }) {
     const section = document.createElement('section');
     section.className = className;
@@ -184,5 +232,17 @@ export default class UI {
     const item = document.createElement('li');
     item.innerHTML = textContent;
     return item;
+  }
+
+  static createTable(idName) {
+    const table = document.createElement('table');
+    table.id = idName;
+    return table;
+  }
+
+  static createTableData({ cellType = 'td', textContent = '' }) {
+    const data = document.createElement(cellType);
+    data.innerHTML = textContent;
+    return data;
   }
 }
