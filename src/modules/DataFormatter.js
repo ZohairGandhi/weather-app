@@ -23,5 +23,8 @@ export default class DataFormatter {
     }
     return 'NW';
   }
+
+  static formatTime(time) {
+    return time.slice(0, 5);
   }
 }
