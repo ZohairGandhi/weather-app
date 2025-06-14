@@ -154,6 +154,7 @@ export default class UI {
   static createWeeklyCard(weeklyForecast) {
     const section = this.createSection({ idName: 'weekly-card' });
     const heading = this.createHeading('h2', 'Next Week Forecast');
+    const tableDiv = this.createDiv('table-container');
     const weekTable = this.createTable('weekly-data');
     const headRow = document.createElement('tr');
 
@@ -194,7 +195,8 @@ export default class UI {
       weekTable.appendChild(row);
     });
 
-    section.append(heading, weekTable);
+    tableDiv.appendChild(weekTable);
+    section.append(heading, tableDiv);
     return section;
   }
 

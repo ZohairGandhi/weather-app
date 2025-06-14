@@ -202,6 +202,10 @@ main {
   background-color: var(--weekly-bg-color);
 }
 
+#table-container {
+  overflow-x: auto;
+}
+
 footer {
   background-color: var(--header-bg-color);
   color: white;
